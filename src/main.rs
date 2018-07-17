@@ -2,6 +2,12 @@ use std::os::raw::c_char;
 use std::collections::HashMap;
 use std::ffi::CString;
 
+
+#[no_mangle]
+pub fn get_html() -> *mut c_char {
+    CString::new("<h1>Hi!</h1><p>This is generated content.</p>").unwrap().into_raw()
+}
+
 #[no_mangle]
 pub fn get_data() -> *mut c_char {
     let mut data = HashMap::new();
