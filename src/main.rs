@@ -1,6 +1,11 @@
+extern crate libc;
+
 use std::os::raw::c_char;
 use std::collections::HashMap;
 use std::ffi::CString;
+
+
+mod externs;
 
 
 #[no_mangle]
@@ -31,4 +36,10 @@ pub fn add(a: i32, b: i32) -> i32 {
 
 fn main() {
     println!("Hello, world!");
+
+    // Calls JS alert
+    externs::alert("Hello, alert!");
+    // Calls JS eval
+    externs::eval("console.log('Hello, eval!')");
+// Redirects to JS console.log
 }
