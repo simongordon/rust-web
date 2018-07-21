@@ -1,4 +1,6 @@
 use std::ffi::CString;
+// use std::os::raw::c_int;
+// use std::os::raw::c_char;
 
 /// Safe rust wrapper for our JS function `alert`.
 pub fn alert(x: &str) {
@@ -16,7 +18,8 @@ pub fn eval(x: &str) -> i32 {
 
 // This is mostly standard Rust-C FFI stuff.
 mod ffi {
-    use libc::*;
+    use std::os::raw::c_int;
+    use std::os::raw::c_char;
 
     extern "C" {
         // This extern is defined in `html/library.js`.

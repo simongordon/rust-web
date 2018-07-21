@@ -1,11 +1,25 @@
-extern crate libc;
+// extern crate libc;
 
 use std::os::raw::c_char;
 use std::collections::HashMap;
 use std::ffi::CString;
 
 
-mod externs;
+// mod externs;
+
+
+
+extern {
+    fn alert(ptr: *const u8, number: u32);
+}
+
+#[no_mangle]
+pub extern "C" fn run() {
+    unsafe {
+        let x = b"Hello World!\0";
+        alert(x as *const u8, 42);
+    }
+}
 
 
 #[no_mangle]
@@ -38,8 +52,13 @@ fn main() {
     println!("Hello, world!");
 
     // Calls JS alert
-    externs::alert("Hello, alert!");
+    // externs::alert("Hello, alert!");
+    // alert("Hello, alert!");
+    //     unsafe {
+    //     let x = b"Hello World!\0";
+    //     alert(x as *const u8, 42);
+    // }
     // Calls JS eval
-    externs::eval("console.log('Hello, eval!')");
+    // externs::eval("console.log('Hello, eval!')");
 // Redirects to JS console.log
 }
